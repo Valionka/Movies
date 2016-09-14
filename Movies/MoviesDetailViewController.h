@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MoviesDetailViewController.h
 //  Movies
 //
 //  Created by Valentin Mihaylov on 9/12/16.
@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface MoviesDetailViewController : UIViewController
 
-@property (nonatomic, strong)NSString *endpoint;
+@property (nonatomic, strong) NSDictionary *movie;
 
 @end
-

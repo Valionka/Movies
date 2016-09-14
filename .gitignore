@@ -1,0 +1,6 @@
+Movies.xcodeproj/**
+*.xcodeproj/**
+Movies.xcodeproj
+Movies.xcworkspace
+Podfile.lock
+pods/**

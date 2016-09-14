@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,36 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    // Now playing tab
+    UINavigationController *nowPlayingNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"MoviesNavigationController"];
+    nowPlayingNavigationController.tabBarItem.title =@"Now Playing";
+    nowPlayingNavigationController.tabBarItem.image = [UIImage imageNamed:@"nplay.png"];
+    
+    // get the controller on top of the nav stack
+    ViewController *nowPlayingController = (ViewController *)[nowPlayingNavigationController topViewController];
+    nowPlayingController.endpoint = @"now_playing";
+
+
+    // Top rated tab
+    UINavigationController *topRatedNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"MoviesNavigationController"];
+
+    topRatedNavigationController.tabBarItem.title = @"Top Rated";
+    topRatedNavigationController.tabBarItem.image = [UIImage imageNamed:@"star.png"];
+    
+    // get the controller on top of the nav stack
+    ViewController *topRatedViewController = (ViewController *)[topRatedNavigationController topViewController];
+    topRatedViewController.endpoint = @"top_rated";
+    
+    // create the tab bar
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    tabBarController.viewControllers = @[nowPlayingNavigationController, topRatedNavigationController];
+    
+    // set the tab bar
+    self.window.rootViewController = tabBarController;
+    
     return YES;
 }
 
