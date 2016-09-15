@@ -2,7 +2,7 @@
 
 **Movies** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **5** hours spent in total
+Time spent: **10** hours spent in total
 
 ## User Stories
 
@@ -14,7 +14,7 @@ The following **required** functionality is completed:
 - [ ] User sees an error message when there is a network error.
 - [X] User can pull to refresh the movie list.
 - [X] Add a tab bar for **Now Playing** and **Top Rated** movies.
-- [ ] Implement segmented control to switch between list view and grid view.
+- [X] Implement segmented control to switch between list view and grid view.
 
 The following **optional** features are implemented:
 
