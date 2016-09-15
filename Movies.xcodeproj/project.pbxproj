@@ -23,6 +23,7 @@
 		377589281D89FD6F00B63205 /* GridMovieCellCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 377589271D89FD6F00B63205 /* GridMovieCellCollectionViewCell.m */; };
 		3775892A1D8A1EE200B63205 /* grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 377589291D8A1EE200B63205 /* grid.png */; };
 		3775892C1D8A1EF000B63205 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 3775892B1D8A1EF000B63205 /* list.png */; };
+		377589311D8A4EED00B63205 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 377589301D8A4EED00B63205 /* error.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		377589271D89FD6F00B63205 /* GridMovieCellCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridMovieCellCollectionViewCell.m; sourceTree = "<group>"; };
 		377589291D8A1EE200B63205 /* grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grid.png; sourceTree = "<group>"; };
 		3775892B1D8A1EF000B63205 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
+		377589301D8A4EED00B63205 /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error.png; sourceTree = "<group>"; };
 		9C1B193EBEFB8AE769F3921C /* libPods-Movies.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Movies.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -91,6 +93,7 @@
 				3775892B1D8A1EF000B63205 /* list.png */,
 				377589291D8A1EE200B63205 /* grid.png */,
 				3775891C1D886FF000B63205 /* star.png */,
+				377589301D8A4EED00B63205 /* error.png */,
 				3775891A1D886F9200B63205 /* nplay.png */,
 				377589161D87605700B63205 /* ViewControllers */,
 				377589121D8750FD00B63205 /* Views */,
@@ -218,6 +221,7 @@
 				3775891D1D886FF000B63205 /* star.png in Resources */,
 				3775890B1D87486F00B63205 /* LaunchScreen.storyboard in Resources */,
 				377589231D890AB100B63205 /* crown.png in Resources */,
+				377589311D8A4EED00B63205 /* error.png in Resources */,
 				377589081D87486F00B63205 /* Assets.xcassets in Resources */,
 				377589251D890C0700B63205 /* clock.png in Resources */,
 				377589061D87486F00B63205 /* Main.storyboard in Resources */,

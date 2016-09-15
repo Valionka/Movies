@@ -17,10 +17,12 @@
 
 @property (nonatomic, strong) NSArray* movies;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *networkErrorView;
 @property (weak, nonatomic) IBOutlet UICollectionView *gridView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *viewSwitch;
 @property (atomic) BOOL listSelected;
+@property (weak, nonatomic) IBOutlet UIImageView *errorImage;
 
 @end
 
@@ -62,6 +64,12 @@ NSString *trUrl = @"https://api.themoviedb.org/3/movie/top_rated?api_key=";
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+
+    // set up network error msg
+    self.networkErrorView.layer.zPosition = 1;
+    self.networkErrorView.hidden = YES;
+    
+    self.errorImage.image = [UIImage imageNamed:@"error.png"];
     
     // set the sources
     self.tableView.dataSource = self;
@@ -116,8 +124,10 @@ NSString *trUrl = @"https://api.themoviedb.org/3/movie/top_rated?api_key=";
                                                     } else {
                                                         [self.gridView reloadData];
                                                     }
+                                                    self.networkErrorView.hidden = YES;
                                                 } else {
-                                                    NSLog(@"An error occurred: %@", error.description);
+                                                    //NSLog(@"An error occurred: %@", error.description);
+                                                    self.networkErrorView.hidden = NO;
                                                 }
                                                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                                             }];
