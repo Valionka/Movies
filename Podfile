@@ -13,4 +13,7 @@ target 'Movies' do
   # progress bar
   pod 'MBProgressHUD'
 
+  # movie trailer
+  pod 'youtube-ios-player-helper', '~> 0.1.6'
+
 end

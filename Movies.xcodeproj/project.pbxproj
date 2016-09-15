@@ -24,6 +24,9 @@
 		3775892A1D8A1EE200B63205 /* grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 377589291D8A1EE200B63205 /* grid.png */; };
 		3775892C1D8A1EF000B63205 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 3775892B1D8A1EF000B63205 /* list.png */; };
 		377589311D8A4EED00B63205 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 377589301D8A4EED00B63205 /* error.png */; };
+		377589341D8AFF6B00B63205 /* MovieTrailerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 377589331D8AFF6B00B63205 /* MovieTrailerController.m */; };
+		377589361D8B0A5A00B63205 /* trailer.png in Resources */ = {isa = PBXBuildFile; fileRef = 377589351D8B0A5A00B63205 /* trailer.png */; };
+		377589381D8B469200B63205 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 377589371D8B469200B63205 /* close.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,10 @@
 		377589291D8A1EE200B63205 /* grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grid.png; sourceTree = "<group>"; };
 		3775892B1D8A1EF000B63205 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
 		377589301D8A4EED00B63205 /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error.png; sourceTree = "<group>"; };
+		377589321D8AFF6B00B63205 /* MovieTrailerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTrailerController.h; sourceTree = "<group>"; };
+		377589331D8AFF6B00B63205 /* MovieTrailerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTrailerController.m; sourceTree = "<group>"; };
+		377589351D8B0A5A00B63205 /* trailer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trailer.png; sourceTree = "<group>"; };
+		377589371D8B469200B63205 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		9C1B193EBEFB8AE769F3921C /* libPods-Movies.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Movies.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -93,7 +100,9 @@
 				3775892B1D8A1EF000B63205 /* list.png */,
 				377589291D8A1EE200B63205 /* grid.png */,
 				3775891C1D886FF000B63205 /* star.png */,
+				377589371D8B469200B63205 /* close.png */,
 				377589301D8A4EED00B63205 /* error.png */,
+				377589351D8B0A5A00B63205 /* trailer.png */,
 				3775891A1D886F9200B63205 /* nplay.png */,
 				377589161D87605700B63205 /* ViewControllers */,
 				377589121D8750FD00B63205 /* Views */,
@@ -134,6 +143,8 @@
 				377589021D87486F00B63205 /* ViewController.m */,
 				377589171D8761B100B63205 /* MoviesDetailViewController.h */,
 				377589181D8761B100B63205 /* MoviesDetailViewController.m */,
+				377589321D8AFF6B00B63205 /* MovieTrailerController.h */,
+				377589331D8AFF6B00B63205 /* MovieTrailerController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -217,9 +228,11 @@
 			files = (
 				3775891B1D886F9200B63205 /* nplay.png in Resources */,
 				3775892A1D8A1EE200B63205 /* grid.png in Resources */,
+				377589361D8B0A5A00B63205 /* trailer.png in Resources */,
 				3775892C1D8A1EF000B63205 /* list.png in Resources */,
 				3775891D1D886FF000B63205 /* star.png in Resources */,
 				3775890B1D87486F00B63205 /* LaunchScreen.storyboard in Resources */,
+				377589381D8B469200B63205 /* close.png in Resources */,
 				377589231D890AB100B63205 /* crown.png in Resources */,
 				377589311D8A4EED00B63205 /* error.png in Resources */,
 				377589081D87486F00B63205 /* Assets.xcassets in Resources */,
@@ -287,6 +300,7 @@
 				377589001D87486F00B63205 /* AppDelegate.m in Sources */,
 				377589191D8761B100B63205 /* MoviesDetailViewController.m in Sources */,
 				377589281D89FD6F00B63205 /* GridMovieCellCollectionViewCell.m in Sources */,
+				377589341D8AFF6B00B63205 /* MovieTrailerController.m in Sources */,
 				377589151D87531000B63205 /* MovieCell.m in Sources */,
 				377588FD1D87486F00B63205 /* main.m in Sources */,
 			);

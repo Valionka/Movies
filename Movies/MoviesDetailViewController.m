@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *ratingIcon;
 @property (weak, nonatomic) IBOutlet UIImageView *durationIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *trailerImage;
 
 @end
 
@@ -42,6 +43,7 @@ NSString *key = @"a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
     self.ratingIcon.image = [UIImage imageNamed:@"crown.png"];
     self.durationIcon.image = [UIImage imageNamed:@"clock.png"];
+    self.trailerImage.image = [UIImage imageNamed:@"trailer.png"];
     // fix the floating point number precision
     float rating = [self.movie[@"vote_average"] floatValue];
     self.movieRating.text = [NSString stringWithFormat:@"%.02f%@", rating, @"%"];
@@ -106,7 +108,12 @@ NSString *key = @"a07e22bc18f5cb106bfe4cc1f83ad8ed";
     
 }
 
-
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath *indexPath;
+    MoviesDetailViewController *vc = segue.destinationViewController;
+    
+    vc.movie = self.movie;
+}
 
 
 - (void)didReceiveMemoryWarning {

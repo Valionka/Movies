@@ -180,7 +180,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WOE-oM-WnV">
-                                                <rect key="frame" x="37" y="53" width="99" height="21"/>
+                                                <rect key="frame" x="32" y="50" width="99" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -191,14 +191,32 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="3Be-ga-TD0">
-                                                <rect key="frame" x="126" y="50" width="23" height="21"/>
+                                                <rect key="frame" x="83" y="50" width="23" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bec-tp-38x">
-                                                <rect key="frame" x="153" y="50" width="86" height="21"/>
+                                                <rect key="frame" x="106" y="50" width="70" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AB2-Os-yWl">
+                                                <rect key="frame" x="163" y="46" width="79" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <segue destination="cVQ-6I-eSE" kind="modal" modalTransitionStyle="flipHorizontal" id="HgP-H5-adL"/>
+                                                </connections>
+                                            </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="by7-AR-kzN">
+                                                <rect key="frame" x="183" y="50" width="22" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trailer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ScL-7i-B0A">
+                                                <rect key="frame" x="205" y="50" width="42" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -221,11 +239,45 @@
                         <outlet property="movieTitle" destination="4C0-5m-HLd" id="fNS-No-H04"/>
                         <outlet property="ratingIcon" destination="ehx-yz-0RB" id="dNw-Ug-fIY"/>
                         <outlet property="scrollView" destination="sU9-Wd-257" id="Kno-RR-52a"/>
+                        <outlet property="trailerImage" destination="by7-AR-kzN" id="pCt-hd-ehR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eNv-RT-uUp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1039" y="347"/>
+        </scene>
+        <!--Movie Trailer Controller-->
+        <scene sceneID="Krv-za-dnX">
+            <objects>
+                <viewController id="cVQ-6I-eSE" customClass="MovieTrailerController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YTQ-2W-bz9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="eCO-rs-wul" customClass="YTPlayerView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="232"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Aq1-cc-6bi">
+                                <rect key="frame" x="122" y="301" width="78" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="close.png"/>
+                                <connections>
+                                    <action selector="onDismiss:" destination="cVQ-6I-eSE" eventType="touchUpInside" id="Dzs-YE-vxM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.65098039220000004" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="closeButton" destination="Aq1-cc-6bi" id="JmT-hf-chF"/>
+                        <outlet property="playerView" destination="eCO-rs-wul" id="lt0-ER-mX0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pix-Cv-i3f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1425" y="347"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BQg-Mu-ccX">
@@ -247,6 +299,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="close.png" width="32" height="32"/>
         <image name="grid.png" width="16" height="16"/>
         <image name="list.png" width="16" height="16"/>
     </resources>
