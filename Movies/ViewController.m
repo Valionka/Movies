@@ -8,15 +8,19 @@
 
 #import "ViewController.h"
 #import "MovieCell.h"
+#import "GridMovieCellCollectionViewCell.h"
 #import "MoviesDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "MBProgressHUD.h"
 
-@interface ViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface ViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) NSArray* movies;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UICollectionView *gridView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *viewSwitch;
+@property (atomic) BOOL listSelected;
 
 @end
 
@@ -26,17 +30,44 @@ NSString *apiKey = @"a07e22bc18f5cb106bfe4cc1f83ad8ed";
 NSString *npUrl = @"https://api.themoviedb.org/3/movie/now_playing?api_key=";
 NSString *trUrl = @"https://api.themoviedb.org/3/movie/top_rated?api_key=";
 
+- (IBAction)onViewSwitch:(id)sender {
+    if(self.viewSwitch.selectedSegmentIndex == 0) {
+        self.listSelected = YES;
+        self.gridView.hidden = YES;
+        self.tableView.hidden = NO;
+        [self.tableView reloadData];
+        [self.tableView insertSubview:self.refreshControl atIndex:0];
+        self.tableView.dataSource = self;
+        self.tableView.delegate = self;
+    } else {
+        self.listSelected = NO;
+        self.tableView.hidden = YES;
+        self.gridView.hidden = NO;
+        [self.gridView reloadData];
+        [self.gridView insertSubview:self.refreshControl atIndex:0];
+        self.gridView.dataSource = self;
+        self.gridView.delegate = self;
+    }
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
+    // display list view when loaded
+    self.listSelected = YES;
+    self.gridView.hidden = YES;
     
+    // refresher
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
+    // set the sources
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    // call the endpoints depending on the tab
     if([self.endpoint isEqualToString:@"now_playing"]){
         [self callMoviesApi:npUrl];
        } else {
@@ -80,7 +111,11 @@ NSString *trUrl = @"https://api.themoviedb.org/3/movie/top_rated?api_key=";
                                                                                       error:&jsonError];
                                                     // NSLog(@"Response: %@", responseDictionary);
                                                     self.movies = responseDictionary[@"results"];
-                                                    [self.tableView reloadData];
+                                                    if(self.listSelected){
+                                                        [self.tableView reloadData];
+                                                    } else {
+                                                        [self.gridView reloadData];
+                                                    }
                                                 } else {
                                                     NSLog(@"An error occurred: %@", error.description);
                                                 }
@@ -120,15 +155,35 @@ NSString *trUrl = @"https://api.themoviedb.org/3/movie/top_rated?api_key=";
     return cell;
 }
 
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return self.movies.count;
+}
+
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    GridMovieCellCollectionViewCell *cell = [self.gridView dequeueReusableCellWithReuseIdentifier:@"GridCell" forIndexPath:indexPath];
+    
+    NSDictionary *movie = self.movies[indexPath.row];
+    NSString *url = [NSString stringWithFormat:@"https://image.tmdb.org/t/p/w154%@", movie[@"poster_path"]];
+    
+    [cell.movieImageGridView setImageWithURL:[NSURL URLWithString:url]];
+    
+    return cell;
+}
+
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-   
-    UITableViewCell *cell = sender;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    
+    NSIndexPath *indexPath;
+    if(self.listSelected){
+         indexPath = [self.tableView indexPathForCell:sender];
+    } else {
+         indexPath = [self.gridView indexPathForCell:sender];
+    }
     MoviesDetailViewController *vc = segue.destinationViewController;
     
     vc.movie = self.movies[indexPath.row];

@@ -13,16 +13,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="geL-R3-glo">
-                                <rect key="frame" x="-7" y="14" width="333" height="568"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" id="geL-R3-glo">
+                                <rect key="frame" x="-7" y="0.0" width="333" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.93333333333333335" green="0.65098039215686276" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="90" id="y9u-rp-bDR" customClass="MovieCell" colorLabel="IBBuiltInLabel-Red">
-                                        <rect key="frame" x="0.0" y="92" width="333" height="90"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="88" id="y9u-rp-bDR" customClass="MovieCell" colorLabel="IBBuiltInLabel-Red">
+                                        <rect key="frame" x="0.0" y="92" width="333" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y9u-rp-bDR" id="RZi-oh-vqM">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="89.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="87.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cvR-Ym-fwl">
@@ -55,17 +55,64 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="j8H-K1-CbK">
+                                <rect key="frame" x="0.0" y="61" width="320" height="507"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="p0h-cN-rq1">
+                                    <size key="itemSize" width="138" height="125"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="GridCell" id="WUz-1G-q52" customClass="GridMovieCellCollectionViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="138" height="125"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="138" height="125"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="zdU-nC-n0A">
+                                                    <rect key="frame" x="17" y="1" width="121" height="124"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <outlet property="movieImageGridView" destination="zdU-nC-n0A" id="jU7-DK-KJ8"/>
+                                            <segue destination="YmW-de-KhW" kind="push" id="7jQ-W2-LN9"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="2QL-Mb-qhP"/>
+                    <navigationItem key="navigationItem" id="2QL-Mb-qhP">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Qzi-qn-TdA">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="ikq-bb-B5M">
+                                <rect key="frame" x="233" y="8" width="71" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="" image="list.png"/>
+                                    <segment title="" image="grid.png"/>
+                                </segments>
+                                <connections>
+                                    <action selector="onViewSwitch:" destination="BYZ-38-t0r" eventType="valueChanged" id="HrY-Qc-PkI"/>
+                                </connections>
+                            </segmentedControl>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="gridView" destination="j8H-K1-CbK" id="527-In-p8U"/>
                         <outlet property="tableView" destination="geL-R3-glo" id="7Du-vh-I6k"/>
+                        <outlet property="viewSwitch" destination="ikq-bb-B5M" id="pRM-o4-dOc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="606" y="347"/>
+            <point key="canvasLocation" x="573" y="347"/>
         </scene>
         <!--Movies Detail View Controller-->
         <scene sceneID="F2j-Rf-ywJ">
@@ -179,4 +226,11 @@
             <point key="canvasLocation" x="162" y="347"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="grid.png" width="16" height="16"/>
+        <image name="list.png" width="16" height="16"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="mzZ-RB-xk4"/>
+    </inferredMetricsTieBreakers>
 </document>
