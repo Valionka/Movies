@@ -42,7 +42,9 @@ NSString *key = @"a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
     self.ratingIcon.image = [UIImage imageNamed:@"crown.png"];
     self.durationIcon.image = [UIImage imageNamed:@"clock.png"];
-    self.movieRating.text = [NSString stringWithFormat:@"%@%@", self.movie[@"vote_average"], @"%"];
+    // fix the floating point number precision
+    float rating = [self.movie[@"vote_average"] floatValue];
+    self.movieRating.text = [NSString stringWithFormat:@"%.02f%@", rating, @"%"];
     
     NSString *apiUrl = [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/%@?api_key=%@", self.movie[@"id"], key];
 
