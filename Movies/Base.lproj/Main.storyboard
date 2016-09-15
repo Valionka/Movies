@@ -36,11 +36,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.93333333333333335" green="0.65098039215686276" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="88" id="y9u-rp-bDR" customClass="MovieCell" colorLabel="IBBuiltInLabel-Red">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="88" id="y9u-rp-bDR" customClass="MovieCell" colorLabel="IBBuiltInLabel-Red">
                                         <rect key="frame" x="0.0" y="28" width="333" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y9u-rp-bDR" id="RZi-oh-vqM">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="87.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="333" height="87.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cvR-Ym-fwl">
