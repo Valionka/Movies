@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
 @property (nonatomic, strong) NSArray *videos;
 @property (nonatomic, strong) NSString *videoId;
-
+@property (atomic) BOOL isVideoPAused;
 @end
 
 @implementation MovieTrailerController
@@ -28,7 +28,11 @@ NSString *url = @"https://api.themoviedb.org/3/movie/%@/videos?api_key=%@";
     self.closeButton.layer.zPosition = 1;
     self.playerView.delegate = self;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closedFullScreen:) name:UIWindowDidBecomeHiddenNotification object:nil];
+
+    
     [self callMoviesApi:self.movie[@"id"]];
+    
 }
 
 - (void) displayVideo:(NSString *) videoId {
@@ -38,6 +42,20 @@ NSString *url = @"https://api.themoviedb.org/3/movie/%@/videos?api_key=%@";
                                  @"autoplay" : @1,
                                  };
     [self.playerView loadWithVideoId:videoId playerVars:playerVars];
+    }
+}
+
+- (void)playerView:(YTPlayerView *)playerView didChangeToState:(YTPlayerState)state{
+    if(state == kYTPlayerStatePaused){
+        self.isVideoPAused = YES;
+    } else {
+        self.isVideoPAused = NO;
+    }
+}
+
+-(void)closedFullScreen:(NSNotification *)myNotification{
+    if(self.isVideoPAused == YES) {
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
