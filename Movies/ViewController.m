@@ -13,7 +13,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "MBProgressHUD.h"
 
-@interface ViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface ViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic, strong) NSArray* movies;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -28,9 +28,10 @@
 
 @implementation ViewController
 
-NSString *apiKey = @"a07e22bc18f5cb106bfe4cc1f83ad8ed";
-NSString *npUrl = @"https://api.themoviedb.org/3/movie/now_playing?api_key=";
-NSString *trUrl = @"https://api.themoviedb.org/3/movie/top_rated?api_key=";
+//NSString *apiKey = @"a07e22bc18f5cb106bfe4cc1f83ad8ed";
+NSString *npUrl = @"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
+NSString *trUrl = @"https://api.themoviedb.org/3/movie/top_rated?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
+NSString *searchUrl = @"https://api.themoviedb.org/3/search/movie?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&query=";
 
 - (IBAction)onViewSwitch:(id)sender {
     if(self.viewSwitch.selectedSegmentIndex == 0) {
@@ -56,6 +57,10 @@ NSString *trUrl = @"https://api.themoviedb.org/3/movie/top_rated?api_key=";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UISearchBar *searchBar = [[UISearchBar alloc] init];
+    self.navigationItem.titleView = searchBar;
+    searchBar.delegate = self;
+    
     // display list view when loaded
     self.listSelected = YES;
     self.gridView.hidden = YES;
@@ -69,6 +74,7 @@ NSString *trUrl = @"https://api.themoviedb.org/3/movie/top_rated?api_key=";
     self.networkErrorView.layer.zPosition = 1;
     self.networkErrorView.hidden = YES;
     
+    // network error image
     self.errorImage.image = [UIImage imageNamed:@"error.png"];
     
     // set the sources
@@ -83,6 +89,20 @@ NSString *trUrl = @"https://api.themoviedb.org/3/movie/top_rated?api_key=";
     }
 }
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    // NSLog(@"Text changed: %@",searchText);
+    if(searchText.length != 0){
+        NSString *urlString = [searchUrl stringByAppendingString:searchText];
+        [self callMoviesApi:urlString];
+    } else {
+        if([self.endpoint isEqualToString:@"now_playing"]){
+            [self callMoviesApi:npUrl];
+        } else {
+            [self callMoviesApi:trUrl];
+        }
+    }
+}
+
 - (void)onRefresh {
     if([self.endpoint isEqualToString:@"now_playing"]){
         [self callMoviesApi:npUrl];
@@ -91,14 +111,26 @@ NSString *trUrl = @"https://api.themoviedb.org/3/movie/top_rated?api_key=";
     }
 }
 
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    searchBar.showsCancelButton =YES;
+}
 
-- (void) callMoviesApi:(NSString *) apiUrl {
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    if([self.endpoint isEqualToString:@"now_playing"]){
+        [self callMoviesApi:npUrl];
+    } else {
+        [self callMoviesApi:trUrl];
+    }
+    [searchBar resignFirstResponder];
+    searchBar.showsCancelButton = NO;
+    searchBar.text = @"";
+    
+}
+
+- (void) callMoviesApi:(NSString *) urlString {
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    NSString *urlString =
-    [apiUrl stringByAppendingString:apiKey];
-    
+
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
     
@@ -159,12 +191,10 @@ NSString *trUrl = @"https://api.themoviedb.org/3/movie/top_rated?api_key=";
     
     NSString *url = [NSString stringWithFormat:@"https://image.tmdb.org/t/p/w154%@", movie[@"poster_path"]];
    
-    
-    [cell.movieImage setImageWithURL:[NSURL URLWithString:url]];
+    [cell.movieImage setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"defaultMovie.png"]];
     
     return cell;
 }
-
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return self.movies.count;
@@ -179,6 +209,7 @@ NSString *trUrl = @"https://api.themoviedb.org/3/movie/top_rated?api_key=";
     NSString *url = [NSString stringWithFormat:@"https://image.tmdb.org/t/p/w154%@", movie[@"poster_path"]];
     
     [cell.movieImageGridView setImageWithURL:[NSURL URLWithString:url]];
+    //[cell.movieImageGridView setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"gridDefaultMovie.png"]];
     
     return cell;
 }

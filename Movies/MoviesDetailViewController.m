@@ -95,10 +95,14 @@ NSString *key = @"a07e22bc18f5cb106bfe4cc1f83ad8ed";
                                                                                     options:kNilOptions
                                                                                       error:&jsonError];
                                                      //NSLog(@"Response: %@", responseDictionary);
-                                                     int runtime = [responseDictionary[@"runtime"] intValue];
-                                                     int hours = runtime / 60;
-                                                     int minutes = runtime % 60;
-                                                     self.movieRunTime.text = [NSString stringWithFormat:@"%d %@ %d %@", hours, @"hr", minutes, @"mins"];
+                                                    if(responseDictionary[@"runtime"] != [NSNull null]){
+                                                        int runtime = [responseDictionary[@"runtime"] intValue];
+                                                        int hours = runtime / 60;
+                                                        int minutes = runtime % 60;
+                                                        self.movieRunTime.text = [NSString stringWithFormat:@"%d %@ %d %@", hours, @"hr", minutes, @"mins"];
+                                                    } else {
+                                                        self.movieRunTime.text = @"N/A";
+                                                    }
                                                 } else {
                                                     NSLog(@"An error occurred: %@", error.description);
                                                 }
@@ -109,7 +113,6 @@ NSString *key = @"a07e22bc18f5cb106bfe4cc1f83ad8ed";
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSIndexPath *indexPath;
     MoviesDetailViewController *vc = segue.destinationViewController;
     
     vc.movie = self.movie;
