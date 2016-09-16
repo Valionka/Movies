@@ -9,7 +9,8 @@
 #import "MovieTrailerController.h"
 
 
-@interface MovieTrailerController ()
+@interface MovieTrailerController () <YTPlayerViewDelegate>
+
 @property (strong, nonatomic) IBOutlet YTPlayerView *playerView;
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
 @property (nonatomic, strong) NSArray *videos;

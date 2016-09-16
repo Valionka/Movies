@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *viewSwitch;
 @property (atomic) BOOL listSelected;
 @property (weak, nonatomic) IBOutlet UIImageView *errorImage;
+@property (strong, nonatomic) UISearchBar *searchBar;
+@property (strong, atomic) NSURLSessionDataTask *task;
 
 @end
 
@@ -57,9 +59,9 @@ NSString *searchUrl = @"https://api.themoviedb.org/3/search/movie?api_key=a07e22
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UISearchBar *searchBar = [[UISearchBar alloc] init];
-    self.navigationItem.titleView = searchBar;
-    searchBar.delegate = self;
+    self.searchBar = [[UISearchBar alloc] init];
+    self.navigationItem.titleView = self.searchBar;
+    self.searchBar.delegate = self;
     
     // display list view when loaded
     self.listSelected = YES;
@@ -91,6 +93,7 @@ NSString *searchUrl = @"https://api.themoviedb.org/3/search/movie?api_key=a07e22
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     // NSLog(@"Text changed: %@",searchText);
+     searchText = [searchText stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     if(searchText.length != 0){
         NSString *urlString = [searchUrl stringByAppendingString:searchText];
         [self callMoviesApi:urlString];
@@ -127,6 +130,10 @@ NSString *searchUrl = @"https://api.themoviedb.org/3/search/movie?api_key=a07e22
     
 }
 
+- (void)searchBarSearchButtonClicked:(UISearchBar *)aSearchBar {
+    [self.searchBar resignFirstResponder];
+}
+
 - (void) callMoviesApi:(NSString *) urlString {
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -139,7 +146,8 @@ NSString *searchUrl = @"https://api.themoviedb.org/3/search/movie?api_key=a07e22
                                   delegate:nil
                              delegateQueue:[NSOperationQueue mainQueue]];
     
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+    
+     self.task = [session dataTaskWithRequest:request
                                             completionHandler:^(NSData * _Nullable data,
                                                                 NSURLResponse * _Nullable response,
                                                                 NSError * _Nullable error) {
@@ -160,13 +168,14 @@ NSString *searchUrl = @"https://api.themoviedb.org/3/search/movie?api_key=a07e22
                                                 } else {
                                                     //NSLog(@"An error occurred: %@", error.description);
                                                     self.networkErrorView.hidden = NO;
+                                                    
                                                 }
                                                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                                             }];
     
     
     [self.refreshControl endRefreshing];
-    [task resume];
+    [self.task resume];
 
 }
 
