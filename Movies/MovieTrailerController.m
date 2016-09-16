@@ -25,6 +25,7 @@ NSString *url = @"https://api.themoviedb.org/3/movie/%@/videos?api_key=%@";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.closeButton.layer.zPosition = 1;
+    self.playerView.delegate = self;
     
     [self callMoviesApi:self.movie[@"id"]];
 }
@@ -39,6 +40,10 @@ NSString *url = @"https://api.themoviedb.org/3/movie/%@/videos?api_key=%@";
     }
 }
 
+- (void)playerViewDidBecomeReady:(YTPlayerView *)playerView {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Playback started" object:self];
+    [self.playerView playVideo];
+}
 
 - (void) callMoviesApi:(NSString *) movieId{
     
