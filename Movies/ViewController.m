@@ -94,7 +94,7 @@ NSString *searchUrl = @"https://api.themoviedb.org/3/search/movie?api_key=a07e22
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     // NSLog(@"Text changed: %@",searchText);
      searchText = [searchText stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    if(searchText.length != 0){
+    if(searchText.length > 1){
         NSString *urlString = [searchUrl stringByAppendingString:searchText];
         [self callMoviesApi:urlString];
     } else {
@@ -136,6 +136,7 @@ NSString *searchUrl = @"https://api.themoviedb.org/3/search/movie?api_key=a07e22
 
 - (void) callMoviesApi:(NSString *) urlString {
     
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
     NSURL *url = [NSURL URLWithString:urlString];
